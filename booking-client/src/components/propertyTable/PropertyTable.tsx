@@ -11,7 +11,6 @@ import { TableContainer,
     Tooltip,
     IconButton
  } from "@mui/material";
-import CriticalStockChip from "../criticalStockChip/CriticalStockChip";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
