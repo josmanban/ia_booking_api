@@ -12,8 +12,8 @@ class City(models.TextChoices):
     CORDOBA = "cordoba"
 
 class Operation(models.TextChoices):
-    BUY = "buy"
-    RENT = "rent"
+    BUY = "BUY"
+    RENT = "RENT"
 
 # Create your models here.
 class Property(models.Model):

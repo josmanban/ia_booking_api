@@ -11,15 +11,16 @@ class Migration(migrations.Migration):
         properties = [
             Property(room_count=2, operation=Operation.RENT, bathroom_count=1, type='apartment', price=150.00, city='cordoba', address='123 Main St'),
             Property(room_count=2, operation=Operation.BUY, bathroom_count=2, type='house', price=250.00, city='cordoba', address='456 Elm St'),
-            Property(room_count=3, operation=Operation.RENT, bathroom_count=3, type='PH', price=500.00, city='chicago', address='789 Oak St'),
-            Property(room_count=3, operation=Operation.BUY, bathroom_count=1, type='departamento', price=100.00, city='cordoba', address='321 Pine St'),
+            Property(room_count=3, operation=Operation.RENT, bathroom_count=3, type='PH', price=500.00, city='cordoba', address='789 Oak St'),
+            Property(room_count=3, operation=Operation.BUY, bathroom_count=1, type='apartment', price=100.00, city='cordoba', address='321 Pine St'),
             Property(room_count=1, operation=Operation.RENT, bathroom_count=4, type='house', price=350.00, city='cordoba', address='654 Maple St'),
             Property(room_count=2, operation=Operation.BUY, bathroom_count=2, type='PH', price=400.00, city='cordoba', address='987 Cedar St'),
-            Property(room_count=3, operation=Operation.RENT, bathroom_count=1, type='departamento', price=200.00, city='chicago', address='246 Birch St'),
+            Property(room_count=3, operation=Operation.RENT, bathroom_count=1, type='apartment', price=200.00, city='cordoba', address='246 Birch St'),
             Property(room_count=2, operation=Operation.BUY, bathroom_count=2, type='house', price=300.00, city='cordoba', address='135 Spruce St'),
             Property(room_count=1, operation=Operation.RENT, bathroom_count=1, type='PH', price=120.00, city='cordoba', address='864 Willow St'),
-            Property(room_count=2, operation=Operation.BUY, bathroom_count=1, type='departamento', price=180.00, city='cordoba', address='753 Aspen St'),    
-            Property(room_count=1, operation=Operation.RENT, bathroom_count=2, type='house', price=220.00, city='chicago', address='159 Chestnut St'),
+            Property(room_count=2, operation=Operation.BUY, bathroom_count=1, type='apartment', price=180.00, city='cordoba', address='753 Aspen St'),    
+            Property(room_count=1, operation=Operation.RENT, bathroom_count=2, type='house', price=220.00, city='cordoba', address='159 Chestnut St'),
+            Property(room_count=2, operation=Operation.RENT, bathroom_count=2, type='house', price=220.00, city='cordoba', address='159 Chestnut St'),
             Property(room_count=3, operation=Operation.BUY, bathroom_count=3, type='PH', price=450.00, city='cordoba', address='357 Walnut St'), 
         ]   
         Property.objects.bulk_create(properties)    
