@@ -1,6 +1,7 @@
 'use client';
 import { Typography } from "@mui/material";
-import AutoPartTable from "@/src/components/propertyTable/PropertyTable";
+import PropertyTable from "@/src/components/propertyTable/PropertyTable";
+import PropertyListCards from "@/src/components/propertyListCards/PropertyList";
 import PropertyFilters from "@/src/components/propertyFilters/PropertyFilters";
 
 import useProperty from "@/src/hooks/useProperty";
@@ -99,7 +100,7 @@ export default function PropertyList(){
     return (
         <>            
             <PropertyFilters onFilter={setFilters}/>
-            <AutoPartTable properties={properties} onDelete={handleDelete} onEdit={handleEdit} onView={handleView}/>
+            <PropertyListCards properties={properties} onDelete={handleDelete} onEdit={handleEdit} onView={handleView}/>
             <PropertyPaginator
                 totalItems={totalItems}
                 itemsPerPage={itemsPerPage} 
