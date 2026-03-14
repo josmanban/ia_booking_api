@@ -5,11 +5,6 @@ class PropertyType(models.TextChoices):
     HOUSE = "house"
     PH = "PH"
 
-class City(models.TextChoices):
-    NEW_YORK = "new_york"
-    LOS_ANGELES = "los_angeles"
-    CHICAGO = "chicago"
-    CORDOBA = "cordoba"
 
 class Operation(models.TextChoices):
     BUY = "BUY"
@@ -21,7 +16,7 @@ class Property(models.Model):
     bathroom_count = models.IntegerField()
     type = models.CharField(max_length=100, choices=PropertyType.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    city = models.CharField(max_length=100, choices=City.choices)
+    city = models.CharField(max_length=150)
     address = models.CharField(max_length=255)
     operation = models.CharField(max_length=100, choices=Operation.choices, default=Operation.RENT) 
     name = models.CharField(max_length=255, default="")
