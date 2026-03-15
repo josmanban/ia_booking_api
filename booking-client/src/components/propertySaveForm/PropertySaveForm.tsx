@@ -103,6 +103,8 @@ export default function PropertySaveForm(
     } as Property 
     );
 
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
     const [errors, setErrors] = useState<any>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>) => {
@@ -161,12 +163,13 @@ export default function PropertySaveForm(
                 open: true,
                 severity: 'error',
                 message: 'Please fix the errors in the form'
-           });
+            });
             return;
         }
         
-
+        
         try{
+            setIsSubmitting(true);
             if(props.initialData){
                 await updateProperty(props.initialData.id!, formData);
             } else {
@@ -193,7 +196,10 @@ export default function PropertySaveForm(
                 severity: 'error',
                 message: errorMessage
             });
+        } finally {
+            setIsSubmitting(false);
         }
+
     }
 
     return (
@@ -270,7 +276,13 @@ export default function PropertySaveForm(
                 fullWidth margin="normal" />
             
             
-            <Button type="submit" variant="contained" color="primary">{props.initialData ? 'Update' : 'Create'}</Button>
+            <Button 
+                type="submit" 
+                variant="contained" 
+                color="primary"
+                disabled={isSubmitting}
+                loading={isSubmitting}
+                >{props.initialData ? 'Update' : 'Create'}</Button>
         </form>
         </Grid>
     )

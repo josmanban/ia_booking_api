@@ -20,6 +20,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 import { useRouter } from 'next/navigation';
 import { Property } from "@/src/models/Property";
+import {Skeleton} from "@mui/material";
 
 
 export default function PropertyList(){
@@ -30,6 +31,8 @@ export default function PropertyList(){
     const [currentPage, setCurrentPage] = useState<number>(1);
     const itemsPerPage = 10;
     const [totalItems, setTotalItems] = useState<number>(0);
+    
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
@@ -81,6 +84,7 @@ export default function PropertyList(){
 
     const reloadData = async () => {
         try{
+            setIsLoading(true);
             const paginationData: PropertyPaginationResponse = await listProperties(
                 currentPage,filters.search);
             setProperties(paginationData.results);
@@ -90,6 +94,8 @@ export default function PropertyList(){
                 message: "Error loading properties",
                 severity: "error"
             });
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -99,14 +105,34 @@ export default function PropertyList(){
 
     return (
         <>            
-            <PropertyFilters onFilter={setFilters}/>
-            <PropertyListCards properties={properties} onDelete={handleDelete} onEdit={handleEdit} onView={handleView}/>
-            <PropertyPaginator
-                totalItems={totalItems}
-                itemsPerPage={itemsPerPage} 
-                currentPage={currentPage}
-                onPageChange={setCurrentPage} 
+            <PropertyFilters 
+                onFilter={setFilters}
+                isLoading={isLoading}
             />
+            {isLoading ? (
+                <>
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                <Skeleton variant="rectangular" height={65} sx={{ m: 1 }} />
+                </>
+            ) : (
+                <>
+                    <PropertyListCards properties={properties} onDelete={handleDelete} onEdit={handleEdit} onView={handleView}/>
+                    <PropertyPaginator
+                        totalItems={totalItems}
+                        itemsPerPage={itemsPerPage} 
+                        currentPage={currentPage}
+                        onPageChange={setCurrentPage} 
+                    />
+                </>
+            )}
 
             <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
                 <DialogTitle>Confirm Delete</DialogTitle>

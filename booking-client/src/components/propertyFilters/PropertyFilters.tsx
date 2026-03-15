@@ -10,6 +10,7 @@ export interface Filters {
 export default function PropertyFilters(
     props: {
         onFilter: (filters: Filters) => void;
+        isLoading?: boolean;
     }
 ){
     const [filters, setFilters] = useState<Filters>({});
@@ -35,8 +36,13 @@ export default function PropertyFilters(
             multiline
             minRows={4}
             maxRows={10}
-            onChange={handleChange} sx={{ mr: 1, minWidth: 750 }} />            
-            <Button type="submit" variant="contained" color="primary">Filter</Button>
+            onChange={handleChange} sx={{ mr: 1, minWidth: 750 }}
+            disabled={props.isLoading}
+            />            
+            <Button 
+                type="submit" variant="contained" color="primary"                
+                loading={props.isLoading}
+            >Filter</Button>
                     </Box>
         </form>
     );
